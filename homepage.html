@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUB RESEARCH | System Detected Cancer Cells</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #0f172a;
+            --accent: #d97706;
+            --cyan: #06b6d4;
+            --light: #f8fafc;
+            --text: #334155;
+            --success: #10b981;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            color: var(--cyan);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: white;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+        
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .hero-description {
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 10px 30px rgba(217, 119, 6, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #b45309;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(217, 119, 6, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 4rem 2rem;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .stat-description {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.5rem;
+        }
+        
+        /* Innovation Section */
+        .innovation {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, white 0%, #f1f5f9 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .innovation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .innovation-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .innovation-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .innovation-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--cyan));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .innovation-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .innovation-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: #f1f5f9;
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* System Section */
+        .system {
+            padding: 6rem 2rem;
+            background: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .system::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(217, 119, 6, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .system-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .phase-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .phase-number {
+            width: 50px;
+            height: 50px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .phase-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .phase-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0a0f1a;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-brand h2 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .footer-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .innovation-grid, .phase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🔬 Predictive Oncology & Hepatology</div>
+            <h1 class="brand-font">
+                The <span class="highlight">Elmourabea</span> System
+            </h1>
+            <p class="hero-subtitle">System Detected Cancer Cells (SDCC)</p>
+            <p class="hero-description">
+                An integrated Generative AI framework that transitions oncology from anatomical observation to molecular intervention. Detecting disease before it becomes visible, repairing biology at the code level.
+            </p>
+            <div class="cta-buttons">
+                <a href="research.html" class="btn btn-primary">Explore the Science</a>
+                <a href="submission.html" class="btn btn-secondary">MOH Submission</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">0.99</div>
+                <div class="stat-label">AUROC Score</div>
+                <div class="stat-description">Liver fibrosis staging (F0-F4) accuracy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">27B</div>
+                <div class="stat-label">Parameters</div>
+                <div class="stat-description">C2S-Scale AI model for single-cell analysis</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">UAE Compliant</div>
+                <div class="stat-description">Data sovereignty & ADHICS standards</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Phase System</div>
+                <div class="stat-description">Integrated biophysical workflow</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="innovation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Core Innovations</span>
+                <h2 class="section-title">From Reactive to Predictive Medicine</h2>
+                <p class="section-description">
+                    Our multimodal AI stack doesn't just detect disease—it predicts, prevents, and provides therapeutic solutions at the molecular level.
+                </p>
+            </div>
+            
+            <div class="innovation-grid">
+                <div class="innovation-card">
+                    <div class="innovation-icon">🧬</div>
+                    <h3>Cold Tumor Detection</h3>
+                    <p>
+                        Using C2S-Scale (27B parameters) to identify "invisible" tumor phenotypes that lack antigen presentation. We discovered silmitasertib + IFN-gamma synergy to make cold tumors "hot."
+                    </p>
+                    <span class="tech-badge">Single-Cell RNA-Seq</span>
+                    <span class="tech-badge">Transformer AI</span>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">🫀</div>
+                    <h3>Non-Invasive Liver Staging</h3>
+                    <p>
+                        MedGemma 1.5 replaces painful biopsies with AI-driven histopathology analysis. Detecting pre-cirrhotic F2/F3 stages before irreversible damage occurs.
+                    </p>
+                    <span class="tech-badge">4B Parameters</span>
+                    <span class="tech-badge">Multimodal Imaging</span>
+                </div>
+                
+                <div class="innovation-card">
+                    <div class="innovation-icon">⚗️</div>
+                    <h3>Programmable tRNA Therapeutics</h3>
+                    <p>
+                        Beyond detection—engineering suppressor tRNAs to read through nonsense mutations. Targeting 30 million patients with "Stop Codon Diseases."
+                    </p>
+                    <span class="tech-badge">ENSURE Platform</span>
+                    <span class="tech-badge">Genetic Engineering</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="system">
+        <div class="container system-content">
+            <div class="section-header">
+                <span class="section-badge" style="background: rgba(217, 119, 6, 0.2); color: var(--accent);">The Protocol</span>
+                <h2 class="section-title" style="color: white;">The Elmourabea 4-Phase System</h2>
+                <p class="section-description" style="color: rgba(255, 255, 255, 0.7);">
+                    A sophisticated biophysical workflow that detects, engages, neutralizes, and repairs malignant energy precursors at the cellular level.
+                </p>
+            </div>
+            
+            <div class="phase-grid">
+                <div class="phase-card">
+                    <div class="phase-number">01</div>
+                    <h3>Bio-Conductivity</h3>
+                    <p>Electrolyte priming creates a "Salt Bridge" for maximum signal penetration. 400% conductivity boost unmasks resistant cells.</p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-number">02</div>
+                    <h3>Linear Induction</h3>
+                    <p>Tunnel geometry provides unidirectional stable energy fields. Zero wave interference for precise targeting.</p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-number">03</div>
+                    <h3>Energy Recovery</h3>
+                    <p>Super-capacitor system captures dissipated energy. 95% recycling efficiency for sustainable treatment.</p>
+                </div>
+                
+                <div class="phase-card">
+                    <div class="phase-number">04</div>
+                    <h3>DNA Filter</h3>
+                    <p>5-layer repair system delivers base-specific integrators (A, G, C, T, U) to restore genetic sequence integrity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h2 class="brand-font">HUB RESEARCH</h2>
+                <p style="color: rgba(255, 255, 255, 0.6); margin-top: 1rem;">
+                    Transforming oncology and hepatology through predictive AI and molecular engineering.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Research</h4>
+                <a href="research.html">The Science</a>
+                <a href="research.html#technology">AI Technology Stack</a>
+                <a href="research.html#clinical">Clinical Applications</a>
+                <a href="https://github.com/ELMOURABEA/The-System-Predictive-Oncology-System" target="_blank">GitHub Repository</a>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Submission</h4>
+                <a href="submission.html">MOH Protocol</a>
+                <a href="submission.html#compliance">UAE Compliance</a>
+                <a href="submission.html#team">Research Team</a>
+                <a href="submission.html#contact">Contact Us</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 HUB RESEARCH. All Rights Reserved. | Principal Investigator: Dr. Mostafa Abdelkader Elmourabea</p>
+        </div>
+    </footer>
+</body>
+</html>
